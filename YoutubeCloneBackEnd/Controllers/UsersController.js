@@ -1,9 +1,11 @@
 import userModel from "../Models/UserRegistration.js";
+import { createUser } from "../Controllers/UserInfoController.js";
 import jwt from "jsonwebtoken";
 export const registerUser = async (req, res) => {
   try {
     const user = new userModel(req.body);
     await user.save();
+    await createUser(req.body);
     res.status(201).send("user created");
   } catch (err) {
     res.status(500).send("something went wrong");

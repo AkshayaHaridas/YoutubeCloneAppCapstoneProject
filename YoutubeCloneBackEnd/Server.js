@@ -17,7 +17,7 @@ mongoose
   .then(() => console.log("connected to database"))
   .catch(() => console.log("something went wrong"));
 
-// user Validation middleware
+// user registration Validation middleware
 const userValidate = async (req, res, next) => {
   try {
     if (req.body) {
@@ -30,7 +30,7 @@ const userValidate = async (req, res, next) => {
   }
   next();
 };
-//verify token{
+//verify token
 const verifyToken = async (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
@@ -40,5 +40,6 @@ const verifyToken = async (req, res, next) => {
     }
     req.payload = payload;
   });
+  next();
 };
-routes(app, userValidate);
+routes(app, userValidate, verifyToken);
