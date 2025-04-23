@@ -6,9 +6,9 @@ export const registerUser = async (req, res) => {
     const user = new userModel(req.body);
     await user.save();
     await createUser(req.body);
-    res.status(201).send("user created");
+    res.status(201).json({ message: "user created" });
   } catch (err) {
-    res.status(500).send("something went wrong");
+    res.status(500).json({ message: "something went wrong" });
   }
 };
 
@@ -30,6 +30,6 @@ export const login = async (req, res) => {
       res.status(401).send("bad request");
     }
   } catch (error) {
-    return res.status(500).send("something went wrong");
+    res.status(500).json({ message: "something went wrong" });
   }
 };

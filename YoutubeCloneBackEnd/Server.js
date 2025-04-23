@@ -3,12 +3,17 @@ import { routes } from "./Routes/routes.js";
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import userModel from "./Models/UserRegistration.js";
+import cors from "cors";
+
 const app = express();
 app.listen("2288", () => {
   console.log("server created successfully");
 });
+// to permit other api that I use (here frontend api) to connect to this api
+app.use(cors());
 //json parse middleware
 app.use(express.json());
+
 // create a mongoose instance to connect to
 mongoose
   .connect(

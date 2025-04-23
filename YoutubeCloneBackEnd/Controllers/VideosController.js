@@ -23,8 +23,8 @@ export const getVideos = async (req, res) => {
 };
 export const getVideoById = async (req, res) => {
   try {
-    const id = req.params.videoId;
-    const video = await videoModel.find({ videoId: id });
+    const id = req.params.id;
+    const video = await videoModel.findOne({ videoId: id });
     if (!video) {
       return res.status(404).send("video not found");
     }

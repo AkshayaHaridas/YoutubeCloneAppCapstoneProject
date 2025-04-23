@@ -11,7 +11,7 @@ export const createChannel = async (req, res) => {
     await user.channels.push(channelId);
     await user.save();
     await channel.save();
-    return res.status(201).send("channel cretaed successfully");
+    return res.status(201).json({ message: "channel cretaed successfully" });
   } catch (error) {
     return res.status(500).send(error);
   }
@@ -28,6 +28,18 @@ export const getChannel = async (req, res) => {
       return res.status(200).send(channel);
     }
     return res.status(401).send("No parameters");
+  } catch (error) {
+    return res.status(500).send("something went wrong");
+  }
+};
+
+export const getChannels = async (req, res) => {
+  try {
+    const channel = await channelModel.find();
+    if (!channel) {
+      return res.status(404).send("channel not found");
+    }
+    return res.status(200).send(channel);
   } catch (error) {
     return res.status(500).send("something went wrong");
   }

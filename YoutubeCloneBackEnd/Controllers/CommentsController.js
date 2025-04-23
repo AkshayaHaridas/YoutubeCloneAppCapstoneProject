@@ -16,13 +16,13 @@ export const addComment = async (req, res) => {
   }
 };
 
-export const getComments = async (req, res) => {
+export const getCommentById = async (req, res) => {
   try {
-    const comments = await commentsModel.find({});
-    if (!comments) {
+    const comment = await commentsModel.findOne({ commentId: req.params.id });
+    if (!comment) {
       return res.status(404).send("not found");
     }
-    return res.status(200).send(comments);
+    return res.status(200).send(comment);
   } catch (error) {
     return res.status(500).send(error);
   }

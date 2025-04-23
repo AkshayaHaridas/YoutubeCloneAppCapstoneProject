@@ -18,15 +18,13 @@ const channelSchema = mongoose.Schema({
     type: "string",
   },
   channelBanner: {
-    required: true,
     type: "string",
   },
   subscribers: {
-    required: true,
     type: "string",
+    default: "",
   },
   videos: {
-    required: true,
     type: "array",
   },
 });

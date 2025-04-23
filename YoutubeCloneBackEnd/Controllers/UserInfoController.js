@@ -25,6 +25,21 @@ export const updateUser = async (user, id) => {
     });
     await _user.save();
   } catch (error) {
-    return res.status(500).send("something went wrong");
+    res.status(500).json({ message: "something went wrong" });
+  }
+};
+
+export const getUser = async (req, res) => {
+  try {
+    const user = await userInfoModel.findOne({
+      userName: req.params.username,
+      password: req.params.password,
+    });
+    if (!user) {
+      return res.status(404).send("user not found");
+    }
+    return res.status(200).send(user);
+  } catch (err) {
+    res.status(500).json({ message: "something went wrong" });
   }
 };
