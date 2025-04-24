@@ -12,21 +12,14 @@ import {
   faUser,
   faVideo,
 } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { stateContext } from "./App";
 
 export const Header = () => {
   //toggle sidebar
-  const { click, setClick } = useContext(stateContext);
-  //username
-  const [userName, setUserName] = useState(null);
-
-  useEffect(() => {
-    const username = localStorage.getItem("userName");
-    if (username) {
-      setUserName(username);
-    }
-  }, []);
+  const { click, setClick, user } = useContext(stateContext);
+  //dropdown to viewChannel
+  const [clickChannel, setClickChannel] = useState(false);
 
   return (
     <>
@@ -49,11 +42,21 @@ export const Header = () => {
           <Link to="/createChannel">Create new channel</Link>
         </div>
         <div className="signIn">
-          {userName ? (
-            <>
+          {user && user.userName ? (
+            <div
+              onClick={() => setClickChannel(!clickChannel)}
+              className="dropdown"
+            >
               <FontAwesomeIcon icon={faCircleUser} className="iconUser" />
-              {userName}
-            </>
+              {user.userName}
+              {clickChannel ? (
+                <div>
+                  <Link to="/ViewChannel">View your Channel</Link>
+                </div>
+              ) : (
+                console.log("user not defined")
+              )}
+            </div>
           ) : (
             <Link to="/login">
               <FontAwesomeIcon icon={faCircleUser} className="iconUser" />

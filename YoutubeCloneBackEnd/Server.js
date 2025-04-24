@@ -17,10 +17,10 @@ app.use(express.json());
 // create a mongoose instance to connect to
 mongoose
   .connect(
-    "mongodb+srv://internshala:internshala@youtubeclonecluster.4oq06ed.mongodb.net/YoutubeConeDb"
+    "mongodb+srv://internshala:internshala12345@youtubeclonecluster.4oq06ed.mongodb.net/YoutubeConeDb"
   )
   .then(() => console.log("connected to database"))
-  .catch(() => console.log("something went wrong"));
+  .catch((err) => console.log("something went wrong", err));
 
 // user registration Validation middleware
 const userValidate = async (req, res, next) => {
@@ -44,7 +44,7 @@ const verifyToken = async (req, res, next) => {
       return res.status(403).send("invalid jwt token");
     }
     req.payload = payload;
+    next();
   });
-  next();
 };
 routes(app, userValidate, verifyToken);

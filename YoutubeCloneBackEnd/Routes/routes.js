@@ -25,7 +25,7 @@ export const routes = (app, userVal, tokenVerify) => {
   //channel links
   app.get("/getChannels", getChannels);
   app.get("/getChannel/:id", getChannel);
-  app.post("/createChannel", tokenVerify, createChannel);
+  app.post("/createChannel", createChannel);
   //user registration links
   app.post("/registerUser", userVal, registerUser);
   app.post("/login", login);
@@ -33,5 +33,5 @@ export const routes = (app, userVal, tokenVerify) => {
   app.post("/addComment", addComment);
   app.get("/getCommentById/:id", getCommentById);
   //userInfo links
-  app.get("/user/:username/:password", tokenVerify, getUser);
+  app.get("/user", tokenVerify, getUser);
 };

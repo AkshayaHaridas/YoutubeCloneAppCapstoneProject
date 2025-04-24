@@ -3,9 +3,7 @@ import userInfoModel from "../Models/UserInfo.js";
 export const createUser = async (user) => {
   try {
     console.log(user);
-    const userId = `${user.userName.slice(0, 4)}${Math.floor(
-      Math.random() * 9999
-    )}`;
+    const userId = user._id;
     const _user = new userInfoModel({ ...user, userId });
     console.log(user);
     console.log(_user);
@@ -32,8 +30,7 @@ export const updateUser = async (user, id) => {
 export const getUser = async (req, res) => {
   try {
     const user = await userInfoModel.findOne({
-      userName: req.params.username,
-      password: req.params.password,
+      userId: req.payload._id,
     });
     if (!user) {
       return res.status(404).send("user not found");

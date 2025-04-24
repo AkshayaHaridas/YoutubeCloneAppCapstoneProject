@@ -22,7 +22,7 @@ const channelSchema = mongoose.Schema({
   },
   subscribers: {
     type: "string",
-    default: "",
+    default: "400",
   },
   videos: {
     type: "array",

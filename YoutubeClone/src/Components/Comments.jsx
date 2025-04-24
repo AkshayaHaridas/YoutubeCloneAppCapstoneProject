@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
 import useFetch from "./CustomFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAdd,
-  faEdit,
-  faSave,
-  faUpload,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+
 export const Comments = ({ commentId }) => {
   const [value, setComment] = useState("");
   const [border, setBorder] = useState(false);

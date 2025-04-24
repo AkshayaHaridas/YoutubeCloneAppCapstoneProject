@@ -2,18 +2,22 @@ import { useParams } from "react-router-dom";
 import useFetch from "./CustomFetch";
 import { Comments } from "./Comments";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faClover,
-  faLink,
-  faThumbsDown,
-  faThumbsUp,
-} from "@fortawesome/free-solid-svg-icons";
+import { VideoDetails } from "./VideoDetails";
+import { faThumbsDown, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 export const VideoDisplay = () => {
   const param = useParams().id;
+
+  // get video by videoId
   const [result, error] = useFetch(
     `http://localhost:2288/getSingleVideo/${param}`
   );
-
+  // get other videos in that channel.So get channel info with channelId
+  let id = null;
+  if (result && result.channelId) {
+    id = result.channelId;
+  }
+  const [channel, err] = useFetch(`http://localhost:2288/getChannel/${id}`);
+  console.log("channel information", channel);
   return (
     <div className="videoParent">
       <div className="videoDiv">
@@ -53,7 +57,19 @@ export const VideoDisplay = () => {
           )}
         </div>
 
-        <div className="videoList"></div>
+        <div className="videoList">
+          {channel && channel.videos.length !== 0 && (
+            <>
+              {channel.videos.map((videoId) => (
+                <VideoDetails
+                  videoId={videoId}
+                  key={videoId}
+                  channelName={channel.channelName}
+                />
+              ))}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import Home from "../src/Components/Home";
 import { CreateChannel } from "./Components/CreateChannel.jsx";
 import { Login } from "./Components/Login.jsx";
 import { Register } from "./Components/Register.jsx";
+import { ViewChannel } from "./Components/ViewChannel.jsx";
 import { VideoDisplay } from "./Components/VideoDisplay.jsx";
 
 const appRouter = createBrowserRouter([
@@ -24,6 +25,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/VideoDisplay/:id",
         element: <VideoDisplay />,
+      },
+      {
+        path: "/ViewChannel",
+        element: <ViewChannel />,
       },
     ],
   },

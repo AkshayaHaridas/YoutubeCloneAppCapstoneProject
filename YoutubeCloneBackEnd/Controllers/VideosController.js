@@ -1,3 +1,4 @@
+import { channelModel } from "../Models/Channel.js";
 import { commentsModel } from "../Models/Comments.js";
 import { videoModel } from "../Models/Videos.js";
 export const createVideos = async (req, res) => {
@@ -5,6 +6,14 @@ export const createVideos = async (req, res) => {
     const video = new videoModel(req.body);
     const result = await video.save();
     console.log("checking on the result after saving a video", result);
+    //saving video in that channel
+    const channel = await channelModel.findOne({
+      channelId: req.body.channelId,
+    });
+    if (channel) {
+      channel.videos.push(req.body.videoId);
+      await channel.save();
+    }
     return res.status(201).send("video added successfully");
   } catch (error) {
     return res.status(500).json({ message: `some thing went wrong ${error}` });
@@ -28,6 +37,7 @@ export const getVideoById = async (req, res) => {
     if (!video) {
       return res.status(404).send("video not found");
     }
+
     return res.status(200).send(video);
   } catch (error) {
     return res.status(500).json({ message: `some thing went wrong ${error}` });

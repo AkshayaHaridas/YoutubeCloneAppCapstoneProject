@@ -10,18 +10,13 @@ export const CreateChannel = () => {
   //find the user using the details in localstorage.
   async function user() {
     try {
-      const username = localStorage.getItem("username");
-      const password = localStorage.getItem("password");
-      const response = await fetch(
-        `http://localhost:2288/user/${username}/${password}`,
-        {
-          method: "get",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `jwt ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const response = await fetch(`http://localhost:2288/user`, {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `jwt ${localStorage.getItem("token")}`,
+        },
+      });
       const res = await response.json();
       console.log("user", res);
       return res;

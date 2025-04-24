@@ -22,7 +22,7 @@ export const login = async (req, res) => {
       if (!user) {
         return res.status(404).send("not found");
       }
-      const token = jwt.sign({ userName: user.userName }, "thisissecretkey", {
+      const token = jwt.sign({ _id: user._id }, "thisissecretkey", {
         expiresIn: "24h",
       });
       res.send({ token: token });

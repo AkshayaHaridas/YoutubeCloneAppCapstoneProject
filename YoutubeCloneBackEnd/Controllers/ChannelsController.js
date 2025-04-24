@@ -19,7 +19,7 @@ export const createChannel = async (req, res) => {
 
 export const getChannel = async (req, res) => {
   try {
-    const _channelId = req.params.channelId;
+    const _channelId = req.params.id;
     if (_channelId) {
       const channel = await channelModel.findOne({ channelId: _channelId });
       if (!channel) {
