@@ -12,12 +12,12 @@ export const ViewChannel = () => {
   return (
     <>
       {channel ? (
-        <>
+        <div className="viewChannel">
           <div>{channel.description}</div>
           <div>{channel.channelName}</div>
           <div>{channel.subscribers}</div>
           <h2>Videos</h2>
-          <div>
+          <div className="viewVideo">
             {channel.videos
               ? channel.videos.map((video) => {
                   return (
@@ -25,13 +25,14 @@ export const ViewChannel = () => {
                       <VideoDetails
                         videoId={video}
                         channelName={channel.channelName}
+                        styleEach="rowVideos"
                       />
                     </div>
                   );
                 })
               : console.log(error)}
           </div>
-        </>
+        </div>
       ) : (
         console.log(error)
       )}

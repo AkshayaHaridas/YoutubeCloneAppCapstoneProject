@@ -1,5 +1,5 @@
 import useFetch from "./CustomFetch";
-export const VideoDetails = ({ videoId, channelName }) => {
+export const VideoDetails = ({ videoId, channelName, styleEach }) => {
   // get video by videoId
   const [result, error] = useFetch(
     `http://localhost:2288/getSingleVideo/${videoId}`
@@ -9,7 +9,7 @@ export const VideoDetails = ({ videoId, channelName }) => {
       {result ? (
         <>
           {" "}
-          <div className="videoDetails">
+          <div className={`videoDetails ${styleEach ? styleEach : ""}`}>
             {console.log(result.thumbnailUrl)}
             <video
               src={result.thumbnailUrl}

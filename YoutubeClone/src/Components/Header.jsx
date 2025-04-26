@@ -8,12 +8,12 @@ import {
   faFile,
   faHistory,
   faHome,
-  faMagnifyingGlass,
   faUser,
   faVideo,
 } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
 import { stateContext } from "./App";
+import HeaderSearchBtn from "./HeaderSearchBtn";
 
 export const Header = () => {
   //toggle sidebar
@@ -31,12 +31,7 @@ export const Header = () => {
           <FontAwesomeIcon icon={faYoutube} />
           <div className="yt-text">YouTube</div>
         </div>
-        <div className="search">
-          <input type="text" className="input" placeholder="Search" />
-          <div className="in-div">
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-          </div>
-        </div>
+        <HeaderSearchBtn />
         {/* createchannel if username */}
         <div>
           <Link to="/createChannel">Create new channel</Link>

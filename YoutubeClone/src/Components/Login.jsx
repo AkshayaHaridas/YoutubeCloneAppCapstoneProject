@@ -3,24 +3,33 @@ import { Link, useNavigate } from "react-router-dom";
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState(false);
+  const [err, setErr] = useState("");
   const navigate = useNavigate();
+
   async function handleLogin() {
     try {
       if (!username || !password) {
-        setMessage(!message);
-      }
-      const result = await fetch("http://localhost:2288/login", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ userName: username, password: password }),
-      });
-      const resultParsed = await result.json();
-      if (resultParsed) {
-        localStorage.setItem("token", resultParsed.token);
-        localStorage.setItem("username", username);
-        localStorage.setItem("password", password);
-        navigate("/home");
+        setErr("enter your username and password");
+        return;
+      } else {
+        const result = await fetch("http://localhost:2288/login", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ userName: username, password: password }),
+        });
+        if (result.ok) {
+          const resultParsed = await result.json();
+          if (resultParsed) {
+            localStorage.setItem("token", resultParsed.token);
+
+            navigate("/home");
+          }
+        } else {
+          if (result.status === 404) {
+            setErr("invalid username or password");
+          }
+          // throw new Error("error in response", result.statusText);
+        }
       }
     } catch (error) {
       console.log(error);
@@ -46,16 +55,15 @@ export const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {err ? <div className="errMessage">{err}</div> : null}
       </div>
+
       <div className="btnDIv">
-        {message ? (
-          <div className="errMessage">enter your username and password</div>
-        ) : null}
         <button onClick={handleLogin}>Login</button>
       </div>
       <div className="registerDiv">
         <Link to="/register" className="linkReg">
-          Register user instead
+          Register a new user instead
         </Link>
       </div>
     </div>

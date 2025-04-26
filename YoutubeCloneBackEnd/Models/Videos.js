@@ -46,5 +46,8 @@ const videoSchema = mongoose.Schema({
   comments: {
     type: "array",
   },
+  category: {
+    type: "string",
+  },
 });
 export const videoModel = mongoose.model("videos", videoSchema);
