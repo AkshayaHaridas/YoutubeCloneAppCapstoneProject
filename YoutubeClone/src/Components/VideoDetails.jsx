@@ -7,23 +7,23 @@ export const VideoDetails = ({ videoId, channelName, styleEach }) => {
   return (
     <>
       {result ? (
-        <>
+        <div className="videoDetailParent">
           {" "}
           <div className={`videoDetails ${styleEach ? styleEach : ""}`}>
-            {console.log(result.thumbnailUrl)}
-            <video
+            <iframe
               src={result.thumbnailUrl}
-              controls
-              autoPlay
-              loop
-              muted
               className="video"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
             />
           </div>
-          <div>{result.title}</div>
-          <div>{channelName}</div>
-          <div>{result.views}</div>
-        </>
+          <div className="rightSection">
+            {" "}
+            <div className="rTitle">{result.title}</div>
+            <div className="rChannel">{channelName}</div>
+            <div className="rViews">{`${result.views} views`}</div>
+          </div>
+        </div>
       ) : (
         console.log(error)
       )}

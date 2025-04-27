@@ -6,7 +6,7 @@ export const CreateChannel = () => {
   const [upload, setUpload] = useState(false);
   const [channelName, setChannelName] = useState("");
   const [description, setdescription] = useState("");
-
+  const [mess, setMess] = useState("");
   //find the user using the details in localstorage.
   async function user() {
     try {
@@ -26,6 +26,9 @@ export const CreateChannel = () => {
   }
   async function handleClick() {
     try {
+      if (!description || !channelName) {
+        setMess("all fields are mandatory");
+      }
       const userInfo = await user();
       if (userInfo) {
         const channel = await fetch("http://localhost:2288/createChannel", {
@@ -40,8 +43,11 @@ export const CreateChannel = () => {
             channelName: channelName,
           }),
         });
-        const _channel = await channel.json();
-        console.log("after channel created", _channel);
+        if (channel.ok) {
+          const _channel = await channel.json();
+          console.log("after channel created", _channel);
+          setMess("channel created successfully");
+        }
       }
     } catch (err) {
       console.log(err);
@@ -82,6 +88,7 @@ export const CreateChannel = () => {
       <div className="btnCh">
         <button onClick={handleClick}>Create Channel</button>
       </div>
+      {mess ? <div className="successMess">{mess}</div> : ""}
     </div>
   );
 };

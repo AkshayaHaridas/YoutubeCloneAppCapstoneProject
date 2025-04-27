@@ -8,6 +8,7 @@ const commentsSchema = mongoose.Schema({
     required: true,
     type: "string",
   },
+
   text: {
     required: true,
     type: "string",

@@ -44,3 +44,18 @@ export const getChannels = async (req, res) => {
     return res.status(500).send("something went wrong");
   }
 };
+export const getChannelById = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    if (userId) {
+      const channels = await channelModel.find({ owner: userId });
+      if (!channels) {
+        return res.status(404).send("channel not found");
+      }
+      return res.status(200).send(channels);
+    }
+    return res.status(401).send("No parameters");
+  } catch (error) {
+    return res.status(500).send("something went wrong");
+  }
+};

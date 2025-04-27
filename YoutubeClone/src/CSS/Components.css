@@ -15,25 +15,41 @@ button {
   border-radius: 12px;
   font-size: medium;
 }
+button:hover {
+  background-color: rgb(43, 108, 86);
+}
+.welcome {
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
+  text-shadow: 2px 2px rgb(195, 195, 222);
+  justify-self: center;
+  font-size: 40px;
+  color: rgb(186, 88, 18);
+}
+.signinSpan {
+  margin: 0 10px;
+}
 .body {
   height: 98vh;
   width: 98vw;
+  position: relative;
+  z-index: 0;
 }
 .headerDiv {
   padding: 0.5% 0.5% 1.4% 1.2%;
   display: flex;
   gap: 1%;
-  position: relative;
-  z-index: 0;
 }
 .menuIcon {
-  padding-top: 0.4%;
-  padding-left: 0.7%;
-  margin-top: 0.2%;
+  padding-top: 0.3%;
+  padding-left: 0.65%;
+  margin-top: 0.3%;
   font-size: 20px;
   color: rgb(30, 28, 28);
   border-radius: 50%;
   width: 2.6%;
+  height: 34px;
 }
 .menuIcon:hover {
   border: 1px solid rgb(219, 217, 219);
@@ -77,10 +93,7 @@ button {
   background-color: rgb(184, 187, 242);
 }
 .search {
-  width: 40%;
-  position: relative;
-  margin: 0% 10% 0 14%;
-  z-index: 0;
+  width: 100%;
 }
 .input {
   width: 89%;
@@ -114,7 +127,7 @@ button {
 .sidebar {
   position: absolute;
   z-index: 5;
-  height: 90%;
+  height: 100%;
   width: 15%;
   display: flex;
   flex-direction: column;
@@ -134,11 +147,17 @@ button {
 .iconSub {
   margin-right: 32px;
 }
+.subParentHome {
+  width: 95%;
+  margin: 0;
+  margin-left: auto;
+}
 .home {
   height: 100%;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-auto-rows: 250px;
+  grid-template-columns: repeat(auto-fit, minmax(390px, 1fr));
+  grid-auto-rows: 300px;
   gap: 20px;
   position: relative;
   z-index: 0;
@@ -149,6 +168,8 @@ button {
   display: flex;
   list-style: none;
   overflow-x: scroll;
+  position: relative;
+  z-index: 0;
 }
 
 .filterBtns::-webkit-scrollbar {
@@ -162,15 +183,53 @@ button {
   flex-shrink: 0;
   white-space: nowrap;
   background-color: rgb(237, 235, 235);
+  position: relative;
+  z-index: 0;
+}
+.filterBtns li:hover {
+  background-color: rgb(145, 143, 143);
+}
+.filterBtns li:active {
+  background-color: rgb(235, 232, 232);
+}
+
+.adjWidth {
+  margin-left: 12%;
+}
+.parentHome {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  overflow-x: hidden;
 }
 .home > div {
   border-radius: 12px;
+}
+.smallSideBar {
+  width: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.smallSideBar .iconSub {
+  margin: auto;
+  width: 90%;
+  height: 30%;
+}
+.iconDiv {
+  width: 100%;
+}
+.iconDiv p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
 }
 .imgDiv {
   height: 80%;
   width: 100%;
 }
-.home video {
+.home iframe {
   width: 100%;
   height: 100%;
   border-radius: 12px;
@@ -179,8 +238,9 @@ button {
   height: 100%;
 }
 .homeNew {
-  width: 80%;
-  margin-left: 17%;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  width: 89%;
+  margin-left: 12%;
 }
 /* login page css */
 .login {
@@ -255,18 +315,19 @@ button {
 }
 /* channel page css */
 .createChannel {
-  width: 60%;
-  height: 50%;
+  width: 55%;
+  height: 500px;
   margin: auto;
-  padding-top: 10%;
+  margin-top: 35px;
+  padding-top: 30px;
+  background-color: aliceblue;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10%;
+  box-shadow: 0px 0px 2px 2px rgb(86, 120, 147);
+  gap: 3%;
 }
-.createChannel div {
-  height: 40%;
-}
+
 .createChannel .iconcc .iconCreateChannel {
   font-size: 80px;
 }
@@ -279,10 +340,32 @@ button {
   gap: 6%;
   border-radius: 12px;
 }
+.createChannel label {
+  font-weight: bold;
+  color: rgb(16, 57, 91);
+}
 .createChannel .inputCh input {
+  padding-left: 10px;
+  font-size: medium;
   height: 40px;
   width: 60%;
   border-radius: 12px;
+}
+.createChannel .inputCh textarea {
+  height: 100px;
+  width: 60%;
+  padding-left: 10px;
+  font-size: medium;
+  border: 1px solid black;
+  margin-left: 23px;
+  padding-top: 2%;
+  border-radius: 12px;
+}
+.createChannel .inputCh textarea:focus {
+  background-color: aqua;
+}
+.createChannel .inputCh input:focus {
+  background-color: aqua;
 }
 .createChannel .btnCh {
   height: 50px;
@@ -296,47 +379,283 @@ button {
   border-radius: 12px;
 }
 .videoParent {
-  padding: 0 8.5% 0 8.5%;
+  width: 100%;
+  height: 100%;
+  padding: 0 5.5% 0 7.5%;
 }
 .videoDiv {
   width: 100%;
-  border: 2px solid rgb(234, 192, 192);
+  height: 100%;
 }
 .videoMain .vDisplay {
   width: 100%;
-  height: 30%;
+  height: 72%;
   border-radius: 12px;
   padding-left: 0;
   margin-left: 0;
-  margin-top: 10px;
-  border: 1px solid salmon;
 }
+.videoMain .videoDetailRow {
+  display: flex;
+  height: 62px;
+}
+.videoMain .videoDetailRow button {
+  height: 40px;
+  color: white;
+  background-color: black;
+  width: 110px;
+  border-radius: 23px;
 
+  margin-left: 5%;
+}
 .videoParent .videoMain {
-  width: 98%;
-  border: 1px solid red;
+  width: 100%;
+  height: 100%;
 }
 .videoParent .videoDiv {
   display: flex;
 }
 .videoDiv .videoList {
-  border: 1px solid rgb(0, 0, 0);
-  margin-left: 2%;
-  width: 55%;
+  margin-left: 1%;
+  width: 30%;
+}
+.videoDiv .videoSubDiv {
+  width: 67%;
+  height: 100%;
 }
 .videoDetails {
+  width: 50%;
+  height: 100%;
+}
+.videoDetailParent {
+  display: flex;
+  height: 100px;
+}
+.rightSection {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+.videoDetails .video {
   width: 100%;
+  height: 100%;
 }
-.video {
-  width: 100%;
-}
-.viewChannel {
-  padding: 10%;
-}
+
 .viewVideo {
   display: flex;
+  flex-wrap: wrap;
+  gap: 1%;
+  width: 100%;
+}
+
+.viewVideo > div {
+  margin-bottom: 40px;
+}
+.viewVideo iframe {
+  height: 179px;
 }
 .rowVideos {
   width: 100%;
   height: 40%;
+}
+.vTitle {
+  font-size: 28px;
+}
+.rTitle {
+  font-weight: 600;
+}
+.rViews {
+  color: rgb(91, 91, 91);
+  font-size: 12px;
+}
+.rChannel {
+  color: rgb(91, 91, 91);
+  font-size: 12px;
+}
+.vDescription {
+  background-color: rgb(232, 232, 232);
+  padding: 2%;
+  height: auto;
+}
+.likeDislike {
+  background-color: rgb(232, 232, 232);
+  width: 126px;
+  height: 40px;
+  display: flex;
+  gap: 7%;
+  border-radius: 23px;
+  margin-left: 30%;
+  justify-content: center;
+  align-items: center;
+}
+.vchannel {
+  font-weight: 600;
+  padding-top: 12px;
+}
+.bar {
+  border-right: 2px solid rgb(198, 190, 190);
+  height: 28px;
+}
+.likes {
+  border-radius: 23px 0px 0px 23px;
+  padding-left: 12%;
+  height: 100%;
+  padding-top: 13px;
+}
+.likes :hover {
+  background-color: grey;
+}
+.dislikes {
+  height: 100%;
+  padding-top: 13px;
+
+  width: 50px;
+}
+.dislikes :hover {
+  background-color: grey;
+}
+.commentsDiv {
+  margin-top: 25px;
+  font-size: 10px;
+}
+.commentsDiv input {
+  width: 80%;
+  border-width: 0px 0px 1px 0px;
+  border-color: black;
+  padding-left: 10px;
+  border-radius: 0px;
+  font-size: 16px;
+  color: black;
+  height: 40px;
+}
+.commentsDiv button {
+  width: 10%;
+  height: 30px;
+}
+.editIcon {
+  font-size: 30px;
+  color: goldenrod;
+}
+.commentsAdd {
+  display: flex;
+  flex-direction: column;
+}
+.commentText {
+  margin-top: 10px;
+  font-size: medium;
+}
+.register {
+  padding-top: 20px;
+  padding-right: 4%;
+  width: 500px;
+  height: 500px;
+  font-size: 17px;
+  font-weight: 600;
+}
+.register input {
+  height: 19%;
+  font-size: 17px;
+}
+.register button {
+  margin: 20px;
+  height: 57px;
+}
+.register .err {
+  font-size: 17px;
+  color: red;
+  display: flex;
+  justify-content: center;
+}
+.viewChannel {
+  font-size: 14px;
+  width: 150px;
+  height: 50px;
+  right: 20px;
+  padding: 1%;
+  position: absolute;
+  top: 49px;
+  z-index: 100;
+  box-shadow: 0 0 2px 1px grey;
+  background-color: rgb(241, 233, 233);
+}
+.viewChannelPage {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 7px;
+  justify-content: center;
+}
+.successMess {
+  color: green;
+}
+.name {
+  font-size: 32px;
+}
+.description {
+  color: gray;
+}
+.colVideoList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 85%;
+}
+.subscribe {
+  font-size: 16px;
+  font-weight: 400;
+  width: 90px;
+  background-color: black;
+  height: 34px;
+  border-radius: 23px;
+}
+.horizoBar {
+  width: 100%;
+  border: 1px solid rgb(172, 172, 172);
+}
+.title {
+  font-weight: bold;
+  color: black;
+}
+.views {
+  color: gray;
+  font-size: small;
+}
+.searchDiv {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  position: relative;
+  margin: 0% 10% 0 14%;
+  z-index: 0;
+}
+.errMess {
+  color: red;
+  font-size: 16;
+}
+.channel {
+  font-size: 16px;
+  font-weight: 600;
+  color: gray;
+}
+.createChannelHeader {
+  color: black;
+  width: 230px;
+  height: 45px;
+}
+.createChannelHeader :hover {
+  background-color: rgb(228, 228, 228);
+}
+.cc {
+  padding-top: 10px;
+  color: black;
+  font-weight: bold;
+  width: 80%;
+  padding-left: 10px;
+
+  height: 100%;
+}
+.displayStill {
+  pointer-events: none;
+  opacity: 0.6;
+  overflow: hidden;
 }

@@ -8,12 +8,17 @@ import { Login } from "./Components/Login.jsx";
 import { Register } from "./Components/Register.jsx";
 import { ViewChannel } from "./Components/ViewChannel.jsx";
 import { VideoDisplay } from "./Components/VideoDisplay.jsx";
+import SignInPage from "./Components/SignInPage.jsx";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "/",
+        element: <SignInPage />,
+      },
       {
         path: "/home",
         element: <Home />,

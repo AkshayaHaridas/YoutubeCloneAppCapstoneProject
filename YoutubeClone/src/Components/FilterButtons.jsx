@@ -1,4 +1,7 @@
+import { stateContext } from "./App";
+import { useContext } from "react";
 const FilterButtons = ({ categoryFun }) => {
+  const { click } = useContext(stateContext);
   const items = [
     "All",
     "Hindi Films",
@@ -23,7 +26,7 @@ const FilterButtons = ({ categoryFun }) => {
 
   return (
     <>
-      <ul className="filterBtns">
+      <ul className={click ? "filterBtns adjWidth" : "filterBtns"}>
         {items.map((btn, index) => (
           <li key={index} onClick={() => categoryFun(btn)}>
             {btn}

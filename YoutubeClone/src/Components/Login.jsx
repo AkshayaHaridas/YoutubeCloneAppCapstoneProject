@@ -21,7 +21,7 @@ export const Login = () => {
           const resultParsed = await result.json();
           if (resultParsed) {
             localStorage.setItem("token", resultParsed.token);
-
+            localStorage.setItem("userName", username);
             navigate("/home");
           }
         } else {

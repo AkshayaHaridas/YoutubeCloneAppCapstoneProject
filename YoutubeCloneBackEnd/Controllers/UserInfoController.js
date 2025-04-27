@@ -4,7 +4,7 @@ export const createUser = async (user) => {
   try {
     console.log(user);
     const userId = user._id;
-    const _user = new userInfoModel({ ...user, userId });
+    const _user = new userInfoModel({ ...user._doc, userId });
     console.log(user);
     console.log(_user);
 

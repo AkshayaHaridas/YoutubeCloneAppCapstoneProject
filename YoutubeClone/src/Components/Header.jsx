@@ -33,9 +33,15 @@ export const Header = () => {
         </div>
         <HeaderSearchBtn />
         {/* createchannel if username */}
-        <div>
-          <Link to="/createChannel">Create new channel</Link>
-        </div>
+        {user && user.userName ? (
+          <div className="createChannelHeader">
+            <Link to="/createChannel">
+              <div className="cc"> Create new channel</div>
+            </Link>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="signIn">
           {user && user.userName ? (
             <div
@@ -45,7 +51,7 @@ export const Header = () => {
               <FontAwesomeIcon icon={faCircleUser} className="iconUser" />
               {user.userName}
               {clickChannel ? (
-                <div>
+                <div className="viewChannel">
                   <Link to="/ViewChannel">View your Channel</Link>
                 </div>
               ) : (
@@ -64,9 +70,11 @@ export const Header = () => {
       {click && (
         <div className="sidebar">
           <div className="homeIcon">
-            {" "}
-            <FontAwesomeIcon icon={faHome} className="iconSub" />
-            Home
+            <Link to="/home">
+              {" "}
+              <FontAwesomeIcon icon={faHome} className="iconSub" />
+              Home
+            </Link>
           </div>
           <div className="">
             {" "}

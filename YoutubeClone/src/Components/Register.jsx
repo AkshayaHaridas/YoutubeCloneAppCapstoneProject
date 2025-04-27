@@ -3,11 +3,16 @@ import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
   const [input, setInput] = useState({});
+  const [err, setErr] = useState("");
   const navigate = useNavigate();
   //fetch api to register user
 
   async function submitForm(e) {
     try {
+      if (!input.email || !input.userName || !input.password) {
+        setErr("All the fields are mandatory");
+        return;
+      }
       e.preventDefault();
       const response = await fetch("http://localhost:2288/registerUser", {
         method: "post",
@@ -28,7 +33,7 @@ export const Register = () => {
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
   return (
-    <form>
+    <form className="login register">
       <label>Enter your email</label>
       <input
         type="text"
@@ -37,7 +42,7 @@ export const Register = () => {
         onChange={(e) => onTextChange(e)}
         required
       />
-      <label>Username</label>
+      <label>Enter a Username</label>
       <input
         type="text"
         name="userName"
@@ -45,7 +50,7 @@ export const Register = () => {
         onChange={(e) => onTextChange(e)}
         required
       />
-      <label>Password</label>
+      <label>Enter a Password</label>
       <input
         type="password"
         name="password"
@@ -54,6 +59,7 @@ export const Register = () => {
         required
       />
       <button onClick={(e) => submitForm(e)}>Submit</button>
+      {err ? <div className="err">{err}</div> : ""}
     </form>
   );
 };
