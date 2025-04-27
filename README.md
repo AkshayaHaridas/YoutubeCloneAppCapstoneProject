@@ -1,4 +1,4 @@
-Youotube Clone:
+Youtube Clone:
 Backend:NodeJS,express.js,JWT authentication,Mongoose and mongoDb
 Frontend:ReactJS
 
